@@ -43,7 +43,6 @@ public class CheckRevisionV2 extends CheckRevisionV1
      * @throws IOException If there is an error reading from one of the datafiles.
      * @return An instance of the CheckrevisionResults class after performing the requested checkrevision.
      */
-    public static void main(String[] args){    }
     public static CheckrevisionResults checkRevision(String versionString, int prod, byte plat, String mpq) throws FileNotFoundException, IOException
     {
         if(prod > Constants.prods.length || plat > 3 || prod <= 0 || plat <= 0) return null;

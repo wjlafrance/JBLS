@@ -29,22 +29,6 @@ public class CheckRevisionV4 extends CheckRevisionV1
     	System.gc();
     }
 
-    public static void main(String[] args) 
-    {
-    	CheckrevisionResults result = null;
-    	String[] inputs = {"0RFf+AAA", "3ou3jQAA", "ZYDAHQAA", "Ry4VIgAA"};
-    	for (int i = 0; i < inputs.length; i++) {
-    		try {
-        		System.out.println("in: " + inputs[i]);
-    			result = checkRevision(inputs[i], Constants.PRODUCT_DIABLO2, Constants.PLATFORM_INTEL, "CheckRevision.mpq");
-    			System.out.println("out: " + Integer.toHexString(result.getChecksum()) + " " + new String(result.getInfo().getBufferChar()));
-    		} catch (IOException e) {
-    			System.out.println("Test failed (IO error)");
-    		}
-    		System.out.println("");
-    	}
-    }
-    
     public static CheckrevisionResults checkRevision(String value, int prod, byte plat, String mpq) throws FileNotFoundException, IOException
     {
         if(prod > 0x0B || plat > 3 || prod < 0 || plat < 0) return null;

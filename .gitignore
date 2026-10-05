@@ -24,3 +24,6 @@
 ._*
 Desktop.ini
 Thumbs.db
+
+# Maven
+target/

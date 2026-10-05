@@ -3,7 +3,6 @@ package Hashing;
 import java.security.MessageDigest;
 
 import util.BigIntegerEx;
-import util.Buffer;
 
 
 public class SRP
@@ -29,26 +28,18 @@ public class SRP
     private byte[] B = null;
     private byte[] A = null;
 
-    public static void main(String []args)
+    public SRP(String username, String password)
     {
-        SRP srp = new SRP("username", "password");
-        byte []salt = new byte[32];
-
-        System.out.println("v: " + srp.get_v(new byte[32]).toString(16));
-        System.out.println("A: " + new Buffer(srp.get_A()));
-        System.out.println("u: " + srp.get_u(salt).toString(16));
-        System.out.println("S: " + new Buffer(srp.get_S(salt, salt)));
-        System.out.println("K: " + new Buffer(srp.get_K(srp.get_S(salt, salt))));
-        System.out.println("M1: " + new Buffer(srp.getM1(salt, salt)));
+        //a = new BigIntegerEx(BigIntegerEx.LITTLE_ENDIAN, "0");
+        this(username, password, new BigIntegerEx(BigIntegerEx.LITTLE_ENDIAN, BIGINT_SIZE * 8));
     }
 
-    public SRP(String username, String password)
+    // Fixed private value a, for deterministic tests
+    SRP(String username, String password, BigIntegerEx a)
     {
         this.username = username.toUpperCase();
         this.password = password.toUpperCase();
-
-        //a = new BigIntegerEx(BigIntegerEx.LITTLE_ENDIAN, "0");
-        a = new BigIntegerEx(BigIntegerEx.LITTLE_ENDIAN, BIGINT_SIZE * 8);
+        this.a = a;
     }
 
     public SRP(byte[] A)
